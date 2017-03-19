@@ -26,12 +26,11 @@ The main document, the one you will compile is ... _main.tex_. Let start by choo
    _book_ for document with parts/chapters
 
 * title and author:  
-   _doctype/title/subtitle_  
-   _author/authorTitle/authorEmail_
+   _title/subtitle_  
+   _author_
 
 * watermark: if needed, uncomment _draft_ or _confidential_
 
-* misc: fill _frontpage_ and _masthead_ according to your needs.
 
 ### Writing content
 You can now write your content in _main.tex_ between _begin{document}_ and _end{document}_.

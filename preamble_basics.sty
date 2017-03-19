@@ -1,0 +1,147 @@
+%preamble.sty
+
+%french language support 
+%\usepackage[frenchb]{babel}
+%\usepackage[utf8]{inputenc}
+%\usepackage[T1]{fontenc}
+
+
+%page settings
+\usepackage{courier}                   %font choice
+\usepackage{a4wide}                    %maximal margins 
+\usepackage{setspace}                  %allow to modify size between lines and other spaces
+\usepackage{xspace}                    %manage spaces after a macro
+\usepackage{lscape}                    %landscape a piece of document 
+\AtBeginDocument{                      %replace '-' by '.' in itemize environnement
+    \renewcommand{\labelitemi}{\textbullet}
+}
+
+
+%flyleaf
+\newcommand\@subtitle{}
+\newcommand\subtitle[1]{\renewcommand\@subtitle{#1}}
+\newcommand\fillFrontPage{
+    \date{version du \today}
+    \makeatletter
+    \let\date\@date
+    \let\title\@title
+    \let\subtitle\@subtitle
+    \let\author\@author
+    \let\runtitle\@title
+    \let\runauthor\@author
+    \let\rundate\@date
+    \makeatother
+    \makeindex
+}
+\newcommand{\frontpage}[8]{%
+    \begin{titlepage}
+        \colorbox{gray!30}{
+            \begin{minipage}[t]{\textwidth}
+                \vspace{0.5cm}
+                \begin{flushright}
+                    \Large
+                    {\sc\date}\\
+                    \vspace{0.5cm}
+                    \hrule
+                    \vspace{1.5cm}
+                    \textbf{\title}\\
+                    \vspace{0.5cm}
+                    \subtitle\\
+                    \vspace{0.5cm}
+                \end{flushright}
+            \end{minipage}
+        }
+        \vfill
+        \begin{center}
+             \includegraphics[height=3cm]{img/logo.png}
+        \end{center}
+    \end{titlepage}
+}
+
+\newcommand{\logversion}[4]{%
+    \hline
+    #1 & #2 & #3 & #4  \\ 
+}
+
+%status belongs to {draft,finalized,approved}
+\newcommand{\masthead}[4]{%
+    \begin{table*}[h!]
+        \begin{center}
+            \begin{tabular}{|c|c|p{3cm}<\centering|c|}
+                \hline
+                \multicolumn{2}{|c|}{\bf Current version} & \bf Status & \bf Nb pages\\
+                \hline
+                \multicolumn{2}{|c|}{#2} & #3 & \pageref*{LastPage} \\
+                \hline
+                \rowcolor{gray!25}\multicolumn{4}{|c|}{\bf history} \\
+                \hline
+                \bf Date & \bf Version & \bf Description & \bf Writer\\
+                #4
+                \hline
+            \end{tabular}
+            \caption{document history}
+        \end{center}
+    \end{table*}
+}
+
+
+%other practical packages 
+\usepackage{version}                   %manage public/private version of a same document 
+\usepackage{makeidx}                   %include an index 
+\usepackage{xcolor}                    %color text +  required for fancyhdr package
+\usepackage{amsmath,amssymb,mathrsfs}  %maths formulae 
+\usepackage{enumerate}                 %numbered item
+\usepackage{comment}                   %comment several lines (text between 'begin' and 'end' is not compiled)
+\usepackage{moreverb}                  %font to quote piece of code 
+\usepackage{lastpage}                  %required for fancyhdr package
+\usepackage{hyperref}                  %linkable references in the document
+
+%figure packages and macro
+\usepackage{graphicx}                  %picture management, required for titlepic package
+\usepackage{placeins}                  %insert a figure close to its context
+%\usepackage{float}                     %| caption of a figure 
+%\floatstyle{plaintop}                  %| at the 
+%\restylefloat{table}                   %| top
+\newcommand{\fig}[4]{%macro
+    \begin{figure}[ht!]
+        \begin{center}
+            \includegraphics[height=#1]{img/#2.png}
+            \caption{#3}
+            \label{#4}
+        \end{center}
+    \end{figure}
+}
+
+% table packages and macro
+\usepackage{colortbl}                  %color cells of a table
+\usepackage{tabularx}                  %elastic width of a table using 'X' keyword
+\usepackage{multirow}                  %merge rows in a table
+\usepackage{multicol}                  %merge columns in a table
+\newcommand{\tab}[4]{%
+    \begin{table}[ht!]
+        \begin{center}
+            \begin{tabular}{#1}
+                #2
+            \end{tabular}
+            \caption{#3}
+            \label{#4}
+        \end{center}
+    \end{table}
+}
+
+%%%% watermark
+\usepackage[printwatermark]{xwatermark}
+% 'draft' watermark
+\newcommand{\watermarkDraft}{
+    \newwatermark[pages=2-\lastdocpage,fontfamily=bch,color=gray!10,angle=90,scale=1,xpos=-90,ypos=0]{DRAFT}
+}
+
+% 'confidential' watermark with the logo of the company
+\newcommand{\watermarkConfidential}{
+    \newwatermark[pages=2-\lastdocpage,fontfamily=bch,color=gray!10,angle=90,scale=1,xpos=-90,ypos=0]{CONFIDENTIEL}
+}
+
+% 'logo' wallpaper
+\newwallpaper[pages=2-\lastdocpage,wpxoffset=20pt,wpyoffset=5pt,boxalign=top-left,tilexsize=0.1\paperwidth,tileysize=0.1\paperwidth,tilexoffset=0.9\paperwidth,tileyoffset=0.9\paperheight,picfile={./img/logo},picfileext=png,picbb=0 0 200 200]{}
+
+

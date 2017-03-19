@@ -1,0 +1,87 @@
+% main.tex
+
+\documentclass[a4paper,11pt]{article}
+\usepackage{../latexTemplates/preamble_basics}
+\usepackage{../latexTemplates/preamble_article}
+
+%\documentclass[a4paper,11pt]{book}
+%\usepackage{../latexTemplates/preamble_basics}
+%\usepackage{../latexTemplates/preamble_book}
+
+\title{This is the title}
+\subtitle{here the optional subtitle}
+\author{John Doe}
+\fillFrontPage
+
+
+\watermarkDraft
+%\watermarkConfidential
+
+
+\begin{document}
+
+%usage : \masthead{subject}{status}{spread}{logs version}
+\masthead{version of \today}{draft}%
+{
+    \logversion{YYYY-MM-DD}{1.0}{writer}{proofreader}{description}
+    \logversion{YYYY-MM-DD}{1.1}{writer}{proofreader}{description}
+}
+
+\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%% abstract (in article only) %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\begin{abstract}
+%\end{abstract}
+
+\newpage
+\thispagestyle{empty}
+\tableofcontents
+\listoffigures
+\listoftables
+\newpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%% doc content below %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{First section}
+\subsection{first subsection}
+\fig{3cm}{sandwich}{illustrating sudo}{fig:sudo}
+
+The figure \ref{fig:sudo} comes from xkcd.
+
+\subsection{second subsection}
+This is a line.\\
+This a second line.
+
+\bigskip
+This is a new paragraph.
+\begin{itemize}
+    \item unordered list
+    \item with several points
+\end{itemize}
+
+\section{Second section}
+
+\paragraph*{paragraph}
+
+\tab{|c|l|r|}{
+\hline
+name & color & coat \\ 
+\hline\hline
+meow & white and black & short \\
+\hline
+}{Description of my cat}{tab:catdesc}
+
+The table \ref{tab:catdesc} describes my lazzy cat.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%% bibliography %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% bibliography %%%
+%\addcontentsline{toc}{section}{Bibliographie} 
+%\bibliographystyle{plain}
+%\bibliography{main}
+
+\end{document}

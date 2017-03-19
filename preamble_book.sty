@@ -1,0 +1,35 @@
+%preamble_book.sty
+
+\setcounter{secnumdepth}{3}            %depth of the sections numbering 
+\setcounter{tocdepth}{3}               %depth in the table of contents,     1=section 2=subsection 3=...
+\usepackage[francais]{minitoc}         %add a toc inside the document (unavailable for article documentclass)
+\setcounter{minitocdepth}{2}           %depth of the minitocs, 2=subsection ...
+\dominitoc                   
+%add \minitoc\newpage after each \chapter to obtain minitoc compilation
+
+%hyperref configuration
+%allow hyperref package to work with toc compilation
+%\addcontentsline{toc}{chapter}{\protect\numberline{\thechapter}#1{}}
+\hypersetup{
+    hyperindex=true,
+    colorlinks=true,
+    filecolor=cyan,
+    linkcolor=cyan,
+    linktoc=none,
+    urlcolor=magenta,
+    pdfstartview=FitW
+}
+
+%header and footer
+\usepackage{fancyhdr}
+\setlength{\headheight}{13.6pt}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+\fancyhead[RE]{\nouppercase{\leftmark}}
+\fancyhead[LO]{\nouppercase{\rightmark}}
+\fancyhead[LE,RO]{- page \thepage\ sur \pageref*{LastPage} -}
+\fancyfoot[CE]{\runtitle}
+\fancyfoot[CO]{\runauthor}
+\pagestyle{fancy}
+
+
