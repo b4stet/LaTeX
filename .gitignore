@@ -1,2 +1,11 @@
-.swp
+*.swp
+*.aux
+*.idx
+*.lof
+*.log
+*.lot
+*.out
+*.pdf
+*.toc
+*.xwm
 

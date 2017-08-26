@@ -20,8 +20,7 @@
 %flyleaf
 \newcommand\@subtitle{}
 \newcommand\subtitle[1]{\renewcommand\@subtitle{#1}}
-\newcommand\fillFrontPage{
-    \date{version du \today}
+\newcommand\prepareFrontPage{
     \makeatletter
     \let\date\@date
     \let\title\@title
@@ -33,20 +32,22 @@
     \makeatother
     \makeindex
 }
-\newcommand{\frontpage}[8]{%
+\newcommand{\frontpage}[1]{%
     \begin{titlepage}
         \colorbox{gray!30}{
             \begin{minipage}[t]{\textwidth}
                 \vspace{0.5cm}
                 \begin{flushright}
                     \Large
-                    {\sc\date}\\
-                    \vspace{0.5cm}
-                    \hrule
-                    \vspace{1.5cm}
                     \textbf{\title}\\
                     \vspace{0.5cm}
+                    \hrule
+                    \vspace{0.5cm}
                     \subtitle\\
+                    \vspace{0.5cm}
+                    {\sc#1}\\
+                    \vspace{0.5cm}
+					{\sc\author}\\
                     \vspace{0.5cm}
                 \end{flushright}
             \end{minipage}
@@ -58,35 +59,8 @@
     \end{titlepage}
 }
 
-\newcommand{\logversion}[4]{%
-    \hline
-    #1 & #2 & #3 & #4  \\ 
-}
-
-%status belongs to {draft,finalized,approved}
-\newcommand{\masthead}[4]{%
-    \begin{table*}[h!]
-        \begin{center}
-            \begin{tabular}{|c|c|p{3cm}<\centering|c|}
-                \hline
-                \multicolumn{2}{|c|}{\bf Current version} & \bf Status & \bf Nb pages\\
-                \hline
-                \multicolumn{2}{|c|}{#2} & #3 & \pageref*{LastPage} \\
-                \hline
-                \rowcolor{gray!25}\multicolumn{4}{|c|}{\bf history} \\
-                \hline
-                \bf Date & \bf Version & \bf Description & \bf Writer\\
-                #4
-                \hline
-            \end{tabular}
-            \caption{document history}
-        \end{center}
-    \end{table*}
-}
-
 
 %other practical packages 
-\usepackage{version}                   %manage public/private version of a same document 
 \usepackage{makeidx}                   %include an index 
 \usepackage{xcolor}                    %color text +  required for fancyhdr package
 \usepackage{amsmath,amssymb,mathrsfs}  %maths formulae 

@@ -2,15 +2,11 @@
 In this repository, you will find some basics to create pdf documents without spending more time on the layout than on the content :)
 
 ## LaTeX installation
-The following packags are required to compile tex file and get pdf result:
-```
-aptitude install texlive texlive-latex-extra texlive-latex3
-```
+Several packages are required to compile tex file and get pdf result.
+To ease portability, a Docker image (built with tag _mypdflatex_) is provided in the repository.
 
-If you want language support, saying french supoprt for example:
-```
-aptitude install texlive-lang-french
-```
+If you prefer to install packages on your system, just extract the list from the Dockerfile: they are known to work fine on Ubuntu Xenial.
+If you need a specific language support (for accents for instance), just add the right _texlive-lang-**_ to the list.
 
 In case your favorite editor is vi, you can install the following plugin to get autocompletion and some shortcuts:
 ```
@@ -69,7 +65,8 @@ The macro _tab_ is similar to _fig_ and has the following syntax:
 * caption as for images
 * label as for images
 
-Tables can be really complex in latex (merging columns/rows, colors, etc). I just recommend to refer to the wiki LaTeX on purpose. 
+Tables can be really complex in latex (merging columns/rows, colors, etc). 
+Just refer to LaTeX wiki on purpose. 
 
 
 Exemple in the current main.tex:
@@ -98,11 +95,13 @@ pdflatex main.tex
 ### Full example
 Let compile the tex file in this repo.
 ```
-pdflatex main.tex
+docker run -it -v $(pwd):/code -w /code -u $(id -i $USER):$(id -g $USER) mypdflatex main.tex
 ```
 
 Comparing the tex file _main.tex_ and the result _main.pdf_, you will learn the syntax to get most of the basics: list/ordered list/table/newline/section and subsections/table of contents/figure/...
+For an advanced usage, you can refer to LaTeX wiki :)
 
-### Reminder
+
+### Resources
 * [LaTeX wiki](https://en.wikibooks.org/wiki/LaTeX/)
 * [BibTex wiki](https://fr.wikipedia.org/wiki/BibTeX)
