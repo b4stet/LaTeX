@@ -5,7 +5,7 @@ In this repository, you will find some basics to create pdf documents without sp
 Several packages are required to compile tex file and get pdf result.
 To ease portability, a Docker image is provided in the repository.
 ```
-docker buld -t mylatex .
+docker build -t mylatex .
 ```
 
 If you prefer to install packages on your system, just extract the list from the Dockerfile: they are known to work fine on Ubuntu Xenial.
