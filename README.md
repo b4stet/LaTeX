@@ -3,7 +3,10 @@ In this repository, you will find some basics to create pdf documents without sp
 
 ## LaTeX installation
 Several packages are required to compile tex file and get pdf result.
-To ease portability, a Docker image (built with tag _mypdflatex_) is provided in the repository.
+To ease portability, a Docker image is provided in the repository.
+```
+docker buld -t mylatex .
+```
 
 If you prefer to install packages on your system, just extract the list from the Dockerfile: they are known to work fine on Ubuntu Xenial.
 If you need a specific language support (for accents for instance), just add the right _texlive-lang-**_ to the list.
@@ -85,7 +88,7 @@ The table \ref{tab:catdesc} describes my lazzy cat.
 Generating a bibliography for your document requires three steps:
 * fill _main.bib_, following the rules described in BibTex wiki 
 * uncomment the three relevant lines in _main.tex_
-* compile  
+* compile (you can use the Docker image here too) 
 ```
 pdflatex main.tex
 bibtex main.aux (2 times)
@@ -95,10 +98,10 @@ pdflatex main.tex
 ### Full example
 Let compile the tex file in this repo.
 ```
-docker run -it -v $(pwd):/code -w /code -u $(id -i $USER):$(id -g $USER) mypdflatex main.tex
+docker run -it -v $(pwd):/code -w /code -u $(id -u $USER):$(id -g $USER) mylatex pdflatex main.tex
 ```
 
-Comparing the tex file _main.tex_ and the result _main.pdf_, you will learn the syntax to get most of the basics: list/ordered list/table/newline/section and subsections/table of contents/figure/...
+Comparing the tex file _main.tex_ and the result _main.pdf_, you can learn the syntax to get most of the basics: list/ordered list/table/newline/section and subsections/table of contents/figure/...
 For an advanced usage, you can refer to LaTeX wiki :)
 
 
